@@ -28,9 +28,15 @@ function (rff::RandomFourierFeatures{T})(X::AbstractMatrix{T}) where {T <: Real}
 end
 
 #Handling batched inputs
-function (rff::RandomFourierFeatures{T})(X::AbstractArray{T}) where {T <: Real}
+function (rff::RandomFourierFeatures{T})(X::AbstractArray{T,3}) where {T <: Real}
     WtX = batched_mul(rff.W',X)
     return [cos.(WtX); sin.(WtX)]
+end
+
+function (rff::RandomFeatures.RandomFourierFeatures{T})(X::AbstractArray{T}) where {T <: Real}
+    return reshape(
+        rff(reshape(X, size(X, 1), :))
+        , :, size(X)[2:end]...)
 end
 
 export RandomFourierFeatures
@@ -62,6 +68,10 @@ end
 
 ###NON-GRAPH
 
+#
+function multibatched_mul(A::AbstractArray, B::AbstractArray)
+    
+end
 
 #For non-graph version, with batch dim
 function T_R3(mat::AbstractArray, rot::AbstractArray, trans::AbstractArray)
