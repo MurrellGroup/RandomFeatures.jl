@@ -27,9 +27,17 @@ function (rff::RandomFourierFeatures{T})(X::AbstractMatrix{T}) where {T <: Real}
     return [cos.(WtX); sin.(WtX)]
 end
 
+#Handling batched inputs
+function (rff::RandomFourierFeatures{T})(X::AbstractArray{T}) where {T <: Real}
+    WtX = batched_mul(rff.W',X)
+    return [cos.(WtX); sin.(WtX)]
+end
+
 export RandomFourierFeatures
 
-
+#rff = RandomFourierFeatures(10=>20,0.1f0)
+#x = randn(Float32,10,11,1)
+#isapprox(rff(x[:,:]) , rff(x)[:,:,1])
 
 ###RANDOM ORIENTATION FEATURES###
 
@@ -72,6 +80,8 @@ function (rof::RandomOrientationFeatures)(Ti::Tuple{AbstractArray, AbstractArray
     p2 = reshape(T_R3(rof.FB, Ti[1], Ti[2]),3,dim,Nr,batch)
     return sqrt.(sum(abs2.(unsqueeze(p1,dims=4) .- unsqueeze(p2, dims = 3)),dims=1))[1,:,:,:,:]
 end
+
+
 
 
 ###GRAPH - will be enabled when InvariantPointAttention is registered
