@@ -4,7 +4,7 @@ CurrentModule = RandomFeatures
 
 # RandomFeatures
 
-Documentation for [RandomFeatures](https://github.com/murrellb/RandomFeatures.jl).
+Documentation for [RandomFeatures](https://github.com/MurrellGroup/RandomFeatures.jl).
 
 ```@index
 ```

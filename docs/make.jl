@@ -8,7 +8,7 @@ makedocs(;
     authors="murrellb <murrellb@gmail.com> and contributors",
     sitename="RandomFeatures.jl",
     format=Documenter.HTML(;
-        canonical="https://murrellb.github.io/RandomFeatures.jl",
+        canonical="https://MurrellGroup.github.io/RandomFeatures.jl",
         edit_link="main",
         assets=String[],
     ),
@@ -18,6 +18,6 @@ makedocs(;
 )
 
 deploydocs(;
-    repo="github.com/murrellb/RandomFeatures.jl",
+    repo="github.com/MurrellGroup/RandomFeatures.jl",
     devbranch="main",
 )
