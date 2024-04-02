@@ -67,12 +67,6 @@ function RandomOrientationFeatures(dim::Integer, σ::AbstractFloat)
 end
 
 ###NON-GRAPH
-
-#
-function multibatched_mul(A::AbstractArray, B::AbstractArray)
-    
-end
-
 #For non-graph version, with batch dim
 function T_R3(mat::AbstractArray, rot::AbstractArray, trans::AbstractArray)
     rotc = reshape(rot, 3,3,:)  
